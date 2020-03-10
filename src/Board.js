@@ -3,11 +3,28 @@ import './index.css';
 import Squire from './Squire'
 
 class Board extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            squares: Array(9).fill(null),
+            xIsnext: true,
+        }
+    }
+
+    handleClick(i) {
+        const squares = this.state.squares.slice();
+        squares[i] = this.state.xIsnext ? "X" : "0"
+        this.setState({ squares: squares, xIsnext:!this.state.xIsnext, })
+    }
+
     renderSquire(i) {
-        return <Squire value={i} />
+        return <Squire value={this.state.squares[i]}
+            onClick={() => this.handleClick(i)}
+        />
     }
     render() {
-        const status = 'Next player: X'
+        const status = 'Next player: ' +(this.state.xIsnext ? "X": "0")
+
 
         return (
             <div>

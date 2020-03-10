@@ -1,10 +1,12 @@
 import React from 'react'
+//import Board from './Board'
 
 
 class Squire extends React.Component {
+   
     render() {
         return (<button className="square"
-            onClick={function () { alert("click") }}>
+            onClick={() => this.props.onClick()}>
             {this.props.value}
         </button>
         );
